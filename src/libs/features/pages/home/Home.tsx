@@ -1,7 +1,7 @@
-import { Heading } from "@chakra-ui/react"
+import { Heading } from '@chakra-ui/react';
 
 const HomePage = () => {
-   return <Heading>HomePage</Heading>
-}
+	return <Heading>HomePage</Heading>;
+};
 
-export default HomePage
+export default HomePage;
