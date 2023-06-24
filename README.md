@@ -23,3 +23,9 @@ pnpm run dev
 ```
 
 > Note other command, see in `package.json`
+
+## Credential (Fake)
+```
+email: ironman@avengers.com
+pass: spiderman
+```
