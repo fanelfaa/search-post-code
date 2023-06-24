@@ -19,7 +19,12 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 			apikey: undefined,
 			isAuthenticated: false,
 			setValues: (values) => set(() => values),
-			logout: () => set(() => ({ apikey: undefined, email: undefined })),
+			logout: () =>
+				set(() => ({
+					apikey: undefined,
+					email: undefined,
+					isAuthenticated: false,
+				})),
 		}),
 		{
 			name: 'user-auth',

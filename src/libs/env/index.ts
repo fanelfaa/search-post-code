@@ -1,9 +1,9 @@
 const FAKE_EMAIL = import.meta.env.VITE_FAKE_EMAIL;
 const FAKE_PASSWORD = import.meta.env.VITE_FAKE_PASSWORD;
-const RAJA_ONGKIR_APIKEY = import.meta.env.VITE_RAJA_ONGKIR_APIKEY;
+const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
 
 export const env = {
 	fakeEmail: FAKE_EMAIL,
 	fakePassword: FAKE_PASSWORD,
-	rajaOngkirApikey: RAJA_ONGKIR_APIKEY,
+	postCodeBaseApiUrl: BASE_API_URL,
 };

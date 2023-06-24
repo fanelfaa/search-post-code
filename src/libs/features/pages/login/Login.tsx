@@ -1,7 +1,6 @@
 import {
 	Box,
 	Button,
-	Flex,
 	FormControl,
 	FormErrorMessage,
 	FormLabel,
@@ -42,58 +41,64 @@ const LoginPage = () => {
 	});
 
 	return (
-		<Flex align="center" justify="center" minH="100vh" bgColor="gray.100">
-			<Box p="2" shadow="md" rounded="md" h="400px" w="400px" bgColor="white">
-				<Heading textAlign="center" mx="auto">
-					Login
-				</Heading>
-				<Box bg="white" p={6} rounded="md">
-					<form onSubmit={formik.handleSubmit}>
-						<VStack spacing={4} align="flex-start">
-							<FormControl
-								isInvalid={!!formik.errors.email && formik.touched.email}
-							>
-								<FormLabel htmlFor="email">Email Address</FormLabel>
-								<Input
-									id="email"
-									name="email"
-									type="email"
-									variant="filled"
-									placeholder="Ex: email@email.com"
-									onChange={formik.handleChange}
-									value={formik.values.email}
-								/>
-								<FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-							</FormControl>
-							<FormControl
-								isInvalid={!!formik.errors.password && formik.touched.password}
-							>
-								<FormLabel htmlFor="password">Password</FormLabel>
-								<Input
-									id="password"
-									name="password"
-									type="password"
-									variant="filled"
-									placeholder="Input your password"
-									onChange={formik.handleChange}
-									value={formik.values.password}
-								/>
-								<FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-							</FormControl>
-							<Box h="2" />
-							<Button
-								type="submit"
-								colorScheme="blue"
-								width="full"
-								isDisabled={formik.isSubmitting}
-							>
-								Login
-							</Button>
-						</VStack>
-					</form>
-				</Box>
+		<Box
+			p="4"
+			shadow="md"
+			rounded="md"
+			minH="100vh"
+			w="md"
+			maxW="100%"
+			bgColor="white"
+			mx="auto"
+		>
+			<Heading>Login</Heading>
+			<Box h="10" />
+			<Box bg="white" rounded="md">
+				<form onSubmit={formik.handleSubmit}>
+					<VStack spacing={4} align="flex-start">
+						<FormControl
+							isInvalid={!!formik.errors.email && formik.touched.email}
+						>
+							<FormLabel htmlFor="email">Email Address</FormLabel>
+							<Input
+								id="email"
+								name="email"
+								type="email"
+								variant="filled"
+								placeholder="Ex: email@email.com"
+								onChange={formik.handleChange}
+								value={formik.values.email}
+							/>
+							<FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+						</FormControl>
+						<FormControl
+							isInvalid={!!formik.errors.password && formik.touched.password}
+						>
+							<FormLabel htmlFor="password">Password</FormLabel>
+							<Input
+								id="password"
+								name="password"
+								type="password"
+								variant="filled"
+								placeholder="Input your password"
+								onChange={formik.handleChange}
+								value={formik.values.password}
+							/>
+							<FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+						</FormControl>
+						<Box h="2" />
+						<Button
+							type="submit"
+							colorScheme="blue"
+							width="full"
+							isDisabled={formik.isSubmitting}
+						>
+							Login
+						</Button>
+					</VStack>
+				</form>
 			</Box>
-		</Flex>
+		</Box>
 	);
 };
 

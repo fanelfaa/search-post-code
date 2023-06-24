@@ -14,6 +14,9 @@ dependencies:
   '@emotion/styled':
     specifier: ^11.11.0
     version: 11.11.0(@emotion/react@11.11.1)(@types/react@18.0.37)(react@18.2.0)
+  alova:
+    specifier: ^2.6.2
+    version: 2.6.2
   formik:
     specifier: ^2.4.2
     version: 2.4.2(react@18.2.0)
@@ -2076,6 +2079,11 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /alova@2.6.2:
+    resolution: {integrity: sha512-cbNdLt8E4XKamtJU2iFemi+m1dxauxlL5LiApizoKt8nIEPYlkqdqRe4pT3Vsh0Ncv4P5R4AvO3nU6Avy4jQcw==}
+    engines: {node: '>= 0.12.0'}
+    dev: false
 
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
