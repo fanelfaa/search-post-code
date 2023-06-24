@@ -1,5 +1,5 @@
-const FAKE_EMAIL = import.meta.env.VITE_FAKE_EMAIL;
-const FAKE_PASSWORD = import.meta.env.VITE_FAKE_PASSWORD;
+import { env } from '@/libs/env';
+
 const FAKE_APIKEY = 'this is an apikey';
 
 export const fakeApiLogin = async ({
@@ -11,7 +11,7 @@ export const fakeApiLogin = async ({
 }) => {
 	const fakeRequest = new Promise<{ apikey: string }>((resolve, reject) => {
 		setTimeout(() => {
-			if (email === FAKE_EMAIL && password === FAKE_PASSWORD) {
+			if (email === env.fakeEmail && password === env.fakePassword) {
 				resolve({ apikey: FAKE_APIKEY });
 			} else {
 				reject(new Error('email or password incorrect!'));

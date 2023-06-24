@@ -23,7 +23,10 @@ export const useAuthStore = create<AuthState & AuthAction>()(
 		}),
 		{
 			name: 'user-auth',
-			partialize: (state) => ({ apikey: state.apikey }),
+			partialize: (state) => ({
+				apikey: state.apikey,
+				isAuthenticated: state.isAuthenticated,
+			}),
 		}
 	)
 );
