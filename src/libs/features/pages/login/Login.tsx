@@ -1,6 +1,5 @@
 import {
 	Box,
-	Button,
 	FormControl,
 	FormErrorMessage,
 	FormLabel,
@@ -13,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { LoginValidationSchema } from '@/libs/validations/login';
 import { fakeApiLogin } from './fakeLogin';
 import useAuthStore from '@/libs/data-access/store/useAuthStore';
+import { PrimaryButton } from '@/libs/ui/button/PrimaryButton';
 
 const LoginPage = () => {
 	const navigate = useNavigate();
@@ -87,14 +87,13 @@ const LoginPage = () => {
 							<FormErrorMessage>{formik.errors.password}</FormErrorMessage>
 						</FormControl>
 						<Box h="2" />
-						<Button
+						<PrimaryButton
 							type="submit"
-							colorScheme="blue"
 							width="full"
 							isDisabled={formik.isSubmitting}
 						>
 							Login
-						</Button>
+						</PrimaryButton>
 					</VStack>
 				</form>
 			</Box>

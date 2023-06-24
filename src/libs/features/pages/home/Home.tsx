@@ -6,7 +6,6 @@ import {
 	Grid,
 	GridItem,
 	Heading,
-	Select,
 	VStack,
 } from '@chakra-ui/react';
 import { useState } from 'react';
@@ -14,11 +13,17 @@ import useAuthStore from '@/libs/data-access/store/useAuthStore';
 import { useGetProvinces } from '@/libs/data-access/hooks/useGetProvince';
 import { useGetCities } from '@/libs/data-access/hooks/useGetCities';
 import { useGetPostCodes } from '@/libs/data-access/hooks/useGetPostCodes';
+import { Select } from '@/libs/ui/select';
 
 const HomePage = () => {
-	const [postCode, setPostCode] = useState<string | null>(null);
+	const [postCode, setPostCode] = useState<string | undefined>(undefined);
 
 	const logout = useAuthStore((a) => a.logout);
+
+	const [selectedProvince, setSelectedProvince] = useState<
+		string | undefined
+	>();
+	const [selectedCity, setSelectedCity] = useState<string | undefined>();
 
 	const provincesQuery = useGetProvinces();
 	const citiesQuery = useGetCities();
@@ -44,11 +49,19 @@ const HomePage = () => {
 			</Flex>
 			<Grid templateRows="1fr auto" flex="1">
 				<GridItem as={Flex} align="center">
-					{postCode ? (
-						<Heading w="100%" textAlign="center">
-							{postCode}
+					<Flex
+						p="6"
+						h="200px"
+						shadow="md"
+						rounded="lg"
+						w="100%"
+						align="center"
+						bgColor="blue.100"
+					>
+						<Heading w="100%" textAlign="center" color="gray.700">
+							{postCode ?? '-'}
 						</Heading>
-					) : null}
+					</Flex>
 				</GridItem>
 				<GridItem>
 					<form>
@@ -57,49 +70,38 @@ const HomePage = () => {
 								<FormLabel>Provinsi</FormLabel>
 								<Select
 									placeholder="Pilih Provinsi"
-									onChange={(e) => {
-										citiesQuery.send(e.target.value);
+									onChange={(opt) => {
+										setSelectedProvince(opt?.value);
+										setSelectedCity(undefined);
+										setPostCode(undefined);
+										citiesQuery.send(opt?.value);
 									}}
-								>
-									{(provincesQuery.options ?? []).map((p) => (
-										<option value={p.value} key={p.value}>
-											{p.label}
-										</option>
-									))}
-								</Select>
+									options={provincesQuery.options ?? []}
+								/>
 							</FormControl>
-							{citiesQuery.options ? (
+							{citiesQuery.options && selectedProvince ? (
 								<FormControl>
 									<FormLabel>Kota/Kabupaten</FormLabel>
 									<Select
 										placeholder="Pilih Kota/Kabupaten"
-										onChange={(e) => {
-											postCodesQuery.send(e.target.value);
+										onChange={(opt) => {
+											setSelectedCity(opt?.value);
+											postCodesQuery.send(opt?.value);
 										}}
-									>
-										{(citiesQuery.options ?? []).map((p) => (
-											<option value={p.value} key={p.value}>
-												{p.label}
-											</option>
-										))}
-									</Select>
+										options={citiesQuery.options ?? []}
+									/>
 								</FormControl>
 							) : null}
-							{postCodesQuery.data ? (
+							{selectedCity && postCodesQuery.options ? (
 								<FormControl>
 									<FormLabel>Kecamatan dan Kelurahan</FormLabel>
 									<Select
 										placeholder="Pilih Kecamatan dan Kelurahan"
-										onChange={(e) => {
-											setPostCode(e.target.value);
+										onChange={(opt) => {
+											setPostCode(opt?.value);
 										}}
-									>
-										{(postCodesQuery.data ?? []).map((p, i) => (
-											<option value={p.kodepos} key={p.kodepos + i}>
-												{p.kecamatan} - {p.kelurahan}
-											</option>
-										))}
-									</Select>
+										options={postCodesQuery.options ?? []}
+									/>
 								</FormControl>
 							) : null}
 						</VStack>
