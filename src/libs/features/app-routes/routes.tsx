@@ -1,6 +1,8 @@
+import React from 'react';
 import { RouteObject } from 'react-router-dom';
-import LoginPage from '../pages/login/Login';
-import HomePage from '../pages/home/Home';
+
+const LoginPage = React.lazy(() => import('../pages/login/Login'));
+const HomePage = React.lazy(() => import('../pages/home/Home'));
 
 export const publicRoutes: RouteObject[] = [
 	{
